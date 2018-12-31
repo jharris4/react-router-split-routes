@@ -1,6 +1,6 @@
 {
   "name": "react-router-split-routes",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Split route loading components for react-router-routes/react-router-config",
   "keywords": [
     "react",
