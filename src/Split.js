@@ -7,7 +7,8 @@ export default class Split extends PureComponent {
     SplitLoadingComponent: PropTypes.func.isRequired,
     SplitErrorComponent: PropTypes.func.isRequired,
     loadSplitComponentForPath: PropTypes.func.isRequired,
-    splitComponentPath: PropTypes.string.isRequired
+    splitComponentPath: PropTypes.string.isRequired,
+    splitErrorCallback: PropTypes.func
   };
 
   constructor(props) {
@@ -65,6 +66,10 @@ export default class Split extends PureComponent {
   }
 
   setSplitError(splitError, splitErrorInfo = null) {
+    const { splitErrorCallback } = this.props;
+    if (splitErrorCallback) {
+      splitErrorCallback(splitError, splitErrorInfo);
+    }
     if (!this._unmounted) {
       const { SplitErrorComponent } = this.props;
       this.setState({ SplitComponent: SplitErrorComponent, splitError, splitErrorInfo });
