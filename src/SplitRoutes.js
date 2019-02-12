@@ -51,8 +51,9 @@ export default class SplitRoutes extends Component {
   }
 
   render() {
-    const { routeOptions } = this.props;
-
-    return renderRoutes(this.routes, routeOptions);
+    const { routeOptions = {}, ...otherProps } = this.props;
+    const optionExtraProps = routeOptions.extraProps ? {...routeOptions.extraProps} : {};
+    const extraProps = {...otherProps, ...optionExtraProps};
+    return renderRoutes(this.routes, {...routeOptions, extraProps});
   }
 }
