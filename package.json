@@ -1,6 +1,6 @@
 {
   "name": "react-router-split-routes",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Split route loading components for react-router-routes/react-router-config",
   "keywords": [
     "react",
@@ -29,7 +29,10 @@
   "customBabelMap": {
     "base": {
       "presets": [
-        ["@babel/preset-env", {}]
+        [
+          "@babel/preset-env",
+          {}
+        ]
       ],
       "plugins": [
         "transform-for-of-as-array",
@@ -47,7 +50,12 @@
             "umd"
           ],
           "presets": [
-            ["@babel/preset-env", { "modules": false }]
+            [
+              "@babel/preset-env",
+              {
+                "modules": false
+              }
+            ]
           ]
         }
       ]
@@ -108,16 +116,16 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/plugin-external-helpers": "^7.2.0",
-    "babel-plugin-rewire": "^1.2.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "babel-plugin-transform-for-of-as-array": "^1.1.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "@babel/plugin-transform-runtime": "^7.4.0",
     "@babel/polyfill": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/register": "^7.4.0",
+    "babel-plugin-rewire": "^1.2.0",
+    "babel-plugin-transform-for-of-as-array": "^1.1.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "copyfiles": "^2.1.0",
     "cross-env": "^5.2.0",
     "react": "^16.8.6",
