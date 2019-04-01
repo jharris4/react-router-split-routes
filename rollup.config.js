@@ -2,8 +2,7 @@ import replace from 'rollup-plugin-replace';
 import babel from 'rollup-plugin-babel';
 import node from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import uglify from 'rollup-plugin-uglify';
-import rollupAnalyzer from 'rollup-analyzer-plugin';
+import terser from 'rollup-plugin-terser';
 const isMinified = process.env.BABEL_ENV === 'min';
 
 let pkg = require('./package.json');
@@ -35,20 +34,12 @@ let config = {
 };
 
 if (isMinified) {
-  let uglifyOptions = {
+  let terserOptions = {
     compress: {
       negate_iife: false
     }
   };
-  config.plugins.push(uglify(uglifyOptions));
+  config.plugins.push(terser(terserOptions));
 }
-
-// config.plugins.push(
-//   rollupAnalyzer({
-//     limit: 10,
-//     //filter: [],
-//     //root: __dirname
-//   })
-// );
 
 export default config;
