@@ -109,35 +109,33 @@
     "react-router-routes": "^1.0.4"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.2",
+    "@babel/runtime": "^7.5.5",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.0",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
     "@babel/plugin-external-helpers": "^7.2.0",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "@babel/plugin-transform-runtime": "^7.4.0",
-    "@babel/polyfill": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
-    "@babel/register": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
     "babel-plugin-rewire": "^1.2.0",
     "babel-plugin-transform-for-of-as-array": "^1.1.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "copyfiles": "^2.1.0",
+    "copyfiles": "^2.1.1",
     "cross-env": "^5.2.0",
     "react": "^16.8.6",
     "rimraf": "^2.6.3",
-    "rollup": "^1.7.4",
-    "rollup-analyzer": "^1.1.0",
-    "rollup-analyzer-plugin": "^1.2.0",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.2",
-    "rollup-plugin-node-resolve": "^4.0.1",
-    "rollup-plugin-replace": "^2.1.1",
-    "rollup-plugin-terser": "^4.0.4"
+    "rollup": "^1.19.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.1.1"
   },
   "scripts": {
     "clean-lib": "rimraf lib",
@@ -150,6 +148,6 @@
     "bundle-umd": "cross-env BABEL_ENV=umd NODE_ENV=production rollup -c",
     "bundle-min": "cross-env BABEL_ENV=min NODE_ENV=production rollup -c",
     "bundle": "npm run clean-bundle && npm run bundle-umd && npm run bundle-min",
-    "prepublishOnly": "npm run clean && npm run build && npm run bundle"
+    "prepublishOnly": "npm run clean && npm run build"
   }
 }
