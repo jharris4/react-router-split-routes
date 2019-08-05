@@ -88,7 +88,7 @@ export default class Split extends PureComponent {
   }
 
   render() {
-    const { loadSplitComponentForPath, splitComponentPath, ...otherProps } = this.props;
+    const { loadSplitComponentForPath, splitComponentPath, splitErrorCallback, ...otherProps } = this.props;
     const { SplitComponent, splitError, splitErrorInfo } = this.state;
     // Leave the SplitLoadingComponent and SplitErrorComponent props for children to use
     let childProps = {
