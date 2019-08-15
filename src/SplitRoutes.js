@@ -30,6 +30,7 @@ export default class SplitRoutes extends Component {
     routes: PropTypes.array,
     routeOptions: PropTypes.object,
     loadSplitComponentForPath: PropTypes.func,
+    getSplitComponentForPath: PropTypes.func,
     splitErrorCallback: PropTypes.func
   };
 
@@ -39,10 +40,11 @@ export default class SplitRoutes extends Component {
   }
 
   splitComponentForPath = (splitComponentPath) => {
-    const { loadSplitComponentForPath, splitErrorCallback } = this.props;
+    const { loadSplitComponentForPath, getSplitComponentForPath, splitErrorCallback } = this.props;
     const splitProps = {
       splitComponentPath,
       loadSplitComponentForPath,
+      getSplitComponentForPath,
       splitErrorCallback
     }
     return props => (

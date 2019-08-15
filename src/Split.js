@@ -7,44 +7,58 @@ export default class Split extends PureComponent {
     SplitLoadingComponent: PropTypes.func.isRequired,
     SplitErrorComponent: PropTypes.func.isRequired,
     loadSplitComponentForPath: PropTypes.func.isRequired,
+    getSplitComponentForPath: PropTypes.func,
     splitComponentPath: PropTypes.string.isRequired,
     splitErrorCallback: PropTypes.func
   };
 
   constructor(props) {
     super(props);
-    const { SplitLoadingComponent } = props;
+    const { getSplitComponentForPath, splitComponentPath, SplitLoadingComponent, splitLoadDelay } = props;
+    let SplitComponent = SplitLoadingComponent;
+    if ((splitLoadDelay === void 0 || splitLoadDelay === 0) && getSplitComponentForPath) {
+      const splitComponent = getSplitComponentForPath(splitComponentPath);
+      if (splitComponent && splitComponent.default) {
+        SplitComponent = splitComponent.default;
+      }
+      else if (splitComponent) {
+        SplitComponent = splitComponent;
+      }
+    };
     this.state = {
-      SplitComponent: SplitLoadingComponent,
+      SplitComponent,
       splitError: null,
       splitErrorInfo: null
     };
   }
 
-  componentWillMount() {
-    const { loadSplitComponentForPath, splitComponentPath } = this.props;
+  componentDidMount() {
+    const { loadSplitComponentForPath, splitComponentPath, SplitLoadingComponent } = this.props;
+    const { SplitComponent } = this.state;
 
     const that = this;
 
-    loadSplitComponentForPath(
-      splitComponentPath,
-      component => {
-        if (component && component.default) {
-          that.setSplitComponent(component.default);
+    if (SplitComponent === SplitLoadingComponent) {
+      loadSplitComponentForPath(
+        splitComponentPath,
+        component => {
+          if (component && component.default) {
+            that.setSplitComponent(component.default);
+          }
+          else if (component) {
+            that.setSplitComponent(component);
+          }
+          else {
+            console.error(`Split error for '${splitComponentPath}' - the loaded component was invalid: `, (typeof component), component);
+            that.setSplitError({ message: 'the loaded component type was invalid', type: (typeof component) }, { component });
+          }
+        },
+        loadingError => {
+          console.error(`Split error for '${splitComponentPath}' - a loading error occurred: `, loadingError);
+          that.setSplitError(loadingError);
         }
-        else if (component) {
-          that.setSplitComponent(component);
-        }
-        else {
-          console.error(`Split error for '${splitComponentPath}' - the loaded component was invalid: `, (typeof component), component);
-          that.setSplitError({ message: 'the loaded component type was invalid', type: (typeof component) }, { component });
-        }
-      },
-      loadingError => {
-        console.error(`Split error for '${splitComponentPath}' - a loading error occurred: `, loadingError);
-        that.setSplitError(loadingError);
-      }
-    );
+      );
+    }
   }
 
   setSplitComponent(SplitComponent) {
